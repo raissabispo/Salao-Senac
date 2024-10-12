@@ -54,35 +54,34 @@ a:hover{
     font-weight: bold;
 }
 /* Hero Section */
-.hero {
+.inicio {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     background-color: #2d6191;
-    padding: 60px;
+    padding: 20px;}
+
+.inicio img {
+    max-width: 730px;
+    margin-right: 80px;
 }
 
-.hero img {
+.inicio-content {
     max-width: 500px;
-    margin-right: 40px;
 }
 
-.hero-content {
-    max-width: 500px;
-}
-
-.hero-content h2 {
+.inicio-content h2 {
     font-size: 36px;
     color: #fc8b0b;
-    margin-top: 10px;
+    gap: 15px;
 }
 
-.hero-content p {
+.inicio-content p {
     font-size: 18px;
     color: #333;
 }
 
-.hero-content a {
+.inicio-content a {
     display: inline-block;
     margin-top: 20px;
     background-color: #f08000;
@@ -138,6 +137,45 @@ a:hover{
 .service-item p {
     color: #666;
 }
+/* localizacao */
+.localizacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2d6191;
+    padding: 60px;
+}
+
+.localizacao img {
+    max-width: 600px;
+    margin-right: 40px;
+}
+
+.localizacao-content {
+    max-width: 500px;
+}
+
+.localizacao-content h2 {
+    font-size: 36px;
+    color: #fc8b0b;
+    margin-top: 10px;
+}
+
+.localizacao-content p {
+    font-size: 18px;
+    color: #333;
+}
+
+.localizacao-content a {
+    display: inline-block;
+    margin-top: 20px;
+    background-color: #f08000;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
 /* portifolio */
 .portfolio-section {
     padding: 50px 0;
@@ -163,4 +201,8 @@ footer {
     text-align: center;
     background-color: #2d6191;
     color: white;
+}
+.carousel{
+    margin-bottom: 30px;
+    margin-right: 20px;
 }
