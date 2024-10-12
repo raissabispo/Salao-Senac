@@ -1,92 +1,166 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>agendamento</title>
-</head>
-<body>
+    <title>Agendamento de Serviços</title>
     <style>
-        section {
-            margin: 30px 0;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2 {
-            color: #e67e22;
-        }
-        
-        ul {
-            list-style-type: none;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 0;
         }
-        
-        ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #ddd;
+        .container {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0, 0, 0.1);
         }
-        
-        ul li:last-child {
-            border-bottom: none;
+        h1 {
+            text-align: center;
+            color: #333;
         }
-        
         form {
             display: flex;
             flex-direction: column;
         }
-        
         label {
             margin: 10px 0 5px;
         }
-        
-        input[type="text"],
-        input[type="date"],
-        input[type="time"],
-        select {
+        input, select {
             padding: 10px;
+            margin-bottom: 20px;
             border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-bottom: 15px;
+            border-radius: 5px;
+            font-size: 16px;
         }
         button {
-            background-color: #e67e22;
-            color: white;
             padding: 10px;
+            background-color: #f86504;
+            color: white;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            border-radius: 5px;
             font-weight: bold;
+            cursor: pointer;
         }
-        
         button:hover {
-            background-color: #d35400;
+            background-color: #ee8700;
+        }
+        .error {
+            color: red;
+            display: none;
+            margin-bottom: 10px;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e0f7fa;
+            border-radius: 4px;
+            display: none;
         }
     </style>
-    <section id="agendamento">
-        <h2>Agende Seu Serviço</h2>
-        <form id="agendamentoForm">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" required>
-
-            <label for="servico">Serviço:</label>
-            <select id="servico" required>
-                <option value="corte">Corte de Cabelo</option>
-                <option value="manicure">Manicure</option>
-                <option value="pedicure">Pedicure</option>
-            </select>
-
-            <label for="data">Data:</label>
-            <input type="date" id="data" required>
-
-            <label for="horario">Horário:</label>
-            <input type="time" id="horario" required>
-
-            <button type="submit">Agendar</button>
-        </form>
-        <div id="resultado"></div>
-    </section>
+</head>
+<body>
+ 
+<div class="container">
+    <h1>Agendamento de Serviços</h1>
+    <form id="agendamentoForm">
+        <label for="cliente">Nome do Cliente:</label>
+        <input type="text" id="cliente" name="cliente" placeholder="Digite seu nome" required>
+ 
+        <label for="profissional">Selecione o Profissional:</label>
+        <select id="profissional" name="profissional" required>
+            <option value="">Selecione...</option>
+            <option value="Ana">Ana</option>
+            <option value="Ricardo">Ricardo</option>
+            <option value="João">João</option>
+        </select>
+ 
+        <label for="servico">Selecione o Serviço:</label>
+        <select id="servico" name="servico" multiple required>
+            <option value="Epilacao|30">Epilação </option>
+            <option value="Corte de Cabelo|45">Corte de Cabelo</option>
+            <option value="Manicure|50">Manicure </option>
+            <option value="Pedicure|45">Pedicure </option>
+            <option value="Limpeza de Pele|90">Limpeza de Pele </option>
+        </select>
+ 
+        <label for="data">Escolha a Data:</label>
+        <input type="date" id="data" name="data" required>
+ 
+        <label for="hora">Escolha o Horário:</label>
+        <input type="time" id="hora" name="hora" required>
+ 
+        <p class="error" id="error-message">Por favor, preencha todos os campos corretamente!</p>
+ 
+        <button type="submit">Agendar</button>
+    </form>
+ 
+ 
+    <div id="resultado"></div>
+</div>
+ 
+<script>
+// calcula duração do serviço//
+    function calcularDuracaoTotal(servicos){
+        return servicos.reduce((total, servico) => {
+            const duracao = parseInt(servico.split('|')[1],10);
+            return total + duracao;
+        }, 0);
+    }
+    // verifica para que o cliente não agende um serviço fora do horario ou se o serviço realizadao não vai ultrapassa o tempo //
+    function verificarConflito(horaInicial, duracaoTotal) {
+        const [horas, minutos] = horaInicial.split(':').map(Number);
+        const horaFinal = new Date();
+        horaFinal.setHours(horas);
+        horaFinal.setMinutes(minutos + duracaoTotal);
+ 
+        if (horaFinal.getHours() >= 18) {
+            return true;
+        }
+        return false;
+    }
+ 
+        document.getElementById("agendamentoForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+ 
+        //formulario
+        const cliente = document.getElementById("cliente").value;
+        const profissional = document.getElementById("profissional").value;
+        const servicosSelecionados = Array.from(document.getElementById("servico").selectedOptions).map(option => option.value);
+        const data = document.getElementById("data").value;
+        const hora = document.getElementById("hora").value;
+        const errorMessage = document.getElementById("error-message");
+        const resultado = document.getElementById("resultado");
+ 
+        // Validação básica
+        if (cliente === "" || profissional === "" ||servicosSelecionados.length === 0|| data === "" || hora === "") {
+            errorMessage.style.display = "block";
+        }
+ 
+        const duracaoTotal = calcularDuracaoTotal(servicosSelecionados);
+ 
+        if (verificarConflito(hora, duracaoTotal)){
+            alert("CONFLITO DE HORÁRIO! ESCOLA OUTRO HORÁRIO");
+            return;
+        }
+       
+// caixa de texto de confirmação de agendamento
+        errorMessage.style.display = "none";
+        resultado.innerHTML = `<strong>Agendamento realizado com sucesso!</strong><br>
+            Cliente: ${cliente}<br>
+            Profissional : ${profissional}<br>
+            Serviços: ${servicosSelecionados.map(s => s.split('|')[0]).join(', ')}<br>
+            Data: ${data}<br>
+            Horário: ${hora}
+            Duração Total: ${duracaoTotal} minutos`;
+        resultado.style.display = "block";
+            // Aqui você pode adicionar a lógica para enviar os dados para o back-end.
+       
+    });
+</script>
+ 
 </body>
 </html>
