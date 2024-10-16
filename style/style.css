@@ -18,7 +18,7 @@ a:hover{
 /* Header */
 .header {
     background-color: #ffffff;
-    padding: 15px;
+    padding: 20px;
     margin: auto;
    
 }
@@ -79,7 +79,7 @@ a:hover{
 
 .inicio-content p {
     font-size: 18px;
-    color: #333;
+    color: #fffcfc;
 }
 
 .inicio-content a {
@@ -102,7 +102,7 @@ a:hover{
 
 .services h3 {
     font-size: 32px;
-    color: #5c246e;
+    color:#fc8b0b;
     margin-bottom: 20px;
 }
 
@@ -120,7 +120,7 @@ a:hover{
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 .service-item:hover {
-    background-color: #f0e6ff; /* Muda a cor de fundo ao passar o mouse */
+    background-color: #f8c475; /* Muda a cor de fundo ao passar o mouse */
     box-shadow: 0 4px 15px rgba(250, 156, 102, 0.2); /* Adiciona uma sombra */
     cursor: pointer;
 }
@@ -163,8 +163,8 @@ a:hover{
 }
 
 .localizacao-content p {
-    font-size: 18px;
-    color: #333;
+    font-size: 21px;
+    color: #fffafa;
 }
 
 .localizacao-content a {

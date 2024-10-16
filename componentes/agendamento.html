@@ -63,6 +63,30 @@
     </style>
 </head>
 <body>
+
+    <div class="container">
+        <div id="clientForm" class="hidden">
+            <h2>Cadastro Rápido do Cliente</h2>
+            <form id="formCadastro">
+              <label for="name">Nome:</label>
+              <input type="text" id="name" placeholder="Digite o nome" required>
+      
+              <label for="email">Email:</label>
+              <input type="email" id="email" placeholder="Digite o email" required>
+      
+              <label for="phone">Telefone:</label>
+              <input type="tel" id="phone" placeholder="Digite o telefone" required>
+      
+              <button type="submit">Cadastrar</button>
+            </form>
+    
+            <p id="mensagemSucesso" class=hidden>
+                Cadastro realizado com sucesso!
+            </p>
+          </div>
+        </div>
+          <br>
+          <br>
  
 <div class="container">
     <h1>Agendamento de Serviços</h1>
@@ -103,6 +127,20 @@
 </div>
  
 <script>
+
+    //Cdastro mensagem
+    const from = document.getElementById('formCadastro');
+        const mensagemSucesso = document.getElementById('mensagemSucesso');
+
+    from.addEventListener('submit', function (event){
+        event.preventDefault();
+    
+    mensagemSucesso.classList.remove('hidden');
+
+    from.reset();
+    
+    
+    });
 // calcula duração do serviço//
     function calcularDuracaoTotal(servicos){
         return servicos.reduce((total, servico) => {
