@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    font-family: "Raleway", sans-serif;
+}
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
@@ -23,16 +26,16 @@ a:hover{
    
 }
 .header img{
-    height: 80px;
+    height: 90px;
      display: block;
-     margin: 0 auto;
-      width: 0px;
+     margin: 30px auto;
+      width: 100px;
 
 }
 
 .header h1 {
-    font-size: 45px;
-    font-family: "Dancing Script", cursive;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; 
     margin: 0;
     color: #FF8801;
     margin-top: 30px;
@@ -48,11 +51,13 @@ a:hover{
    
 }
 
+
 .nav a {
     color: rgb(255, 174, 0);
     text-decoration: none;
     margin: 0 50px;
     font-weight: bold;
+    transition:  transform 0.5s ease;
 }
 /* Hero Section */
 .inicio {
@@ -91,6 +96,7 @@ a:hover{
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
+    transition:  transform 0.5s ease;
 }
 
 /* Services Section */
@@ -118,11 +124,13 @@ a:hover{
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 1s ease, transform 1s ease;
 }
 .service-item:hover {
     background-color: #f8c475; /* Muda a cor de fundo ao passar o mouse */
     box-shadow: 0 4px 15px rgba(250, 156, 102, 0.2); /* Adiciona uma sombra */
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 .service-item img {
@@ -176,6 +184,7 @@ a:hover{
     text-decoration: none;
     font-weight: bold;
     border-radius: 5px;
+    transition:  transform 0.5s ease;
 }
 /* feedback */
 .carousel{
