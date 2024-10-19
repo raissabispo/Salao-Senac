@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Agendamento de Serviços</title>
     <style>
         body {
@@ -60,87 +61,60 @@
             border-radius: 4px;
             display: none;
         }
+        .service-content {
+            display: none;
+        }
+        .service-content.active {
+            display: block;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div id="clientForm" class="hidden">
-            <h2>Cadastro Rápido do Cliente</h2>
-            <form id="formCadastro">
-              <label for="name">Nome:</label>
-              <input type="text" id="name" placeholder="Digite o nome" required>
-      
-              <label for="email">Email:</label>
-              <input type="email" id="email" placeholder="Digite o email" required>
-      
-              <label for="phone">Telefone:</label>
-              <input type="tel" id="phone" placeholder="Digite o telefone" required>
-      
-              <button type="submit">Cadastrar</button>
-            </form>
-    
-            <p id="mensagemSucesso" class=hidden>
-                Cadastro realizado com sucesso!
-            </p>
-          </div>
-        </div>
-          <br>
-          <br>
- 
-<div class="container">
     <h1>Agendamento de Serviços</h1>
-    <form id="agendamentoForm">
-        <label for="cliente">Nome do Cliente:</label>
-        <input type="text" id="cliente" name="cliente" placeholder="Digite seu nome" required>
- 
-        <label for="profissional">Selecione o Profissional:</label>
-        <select id="profissional" name="profissional" required>
-            <option value="">Selecione...</option>
-            <option value="Ana">Ana</option>
-            <option value="Ricardo">Ricardo</option>
-            <option value="João">João</option>
-        </select>
- 
-        <label for="servico">Selecione o Serviço:</label>
-        <select id="servico" name="servico" multiple required>
-            <option value="Epilacao|30">Epilação </option>
-            <option value="Corte de Cabelo|45">Corte de Cabelo</option>
-            <option value="Manicure|50">Manicure </option>
-            <option value="Pedicure|45">Pedicure </option>
-            <option value="Limpeza de Pele|90">Limpeza de Pele </option>
-        </select>
- 
-        <label for="data">Escolha a Data:</label>
-        <input type="date" id="data" name="data" required>
- 
-        <label for="hora">Escolha o Horário:</label>
-        <input type="time" id="hora" name="hora" required>
- 
-        <p class="error" id="error-message">Por favor, preencha todos os campos corretamente!</p>
- 
-        <button type="submit">Agendar</button>
-    </form>
- 
- 
+            <form id="agendamentoForm">
+                <label for="cliente">Nome do Cliente:</label>
+                <input type="text" id="cliente" name="cliente" placeholder="Digite seu nome" required>
+                <label for="profissional">Selecione o Profissional:</label>
+                <select id="profissional" name="profissional" required>
+                    <option value="">Selecione...</option>
+                    <option value="Ana">Ana</option>
+                    <option value="Ricardo">Ricardo</option>
+                    <option value="João">João</option>
+                </select>
+        
+                <label for="servico">Selecione o Serviço:</label>
+                <select id="servico" name="servico" multiple required>
+                    <option value="Epilacao|30">Epilação </option>
+                    <option value="Corte de Cabelo|45">Corte de Cabelo</option>
+                    <option value="Manicure|50">Manicure </option>
+                    <option value="Pedicure|45">Pedicure </option>
+                    <option value="Limpeza de Pele|90">Limpeza de Pele </option>
+                </select>
+        
+                <label for="data">Escolha a Data:</label>
+                <input type="date" id="data" name="data" required>
+        
+                <label for="hora">Escolha o Horário:</label>
+                <input type="time" id="hora" name="hora" required>
+        
+                <p class="error" id="error-message">Por favor, preencha todos os campos corretamente!</p>
+
+                <button type="submit">Agendar</button>
+            </form>
     <div id="resultado"></div>
 </div>
- 
+
 <script>
-
-    //Cdastro mensagem
-    const from = document.getElementById('formCadastro');
-        const mensagemSucesso = document.getElementById('mensagemSucesso');
-
-    from.addEventListener('submit', function (event){
-        event.preventDefault();
-    
-    mensagemSucesso.classList.remove('hidden');
-
-    from.reset();
-    
-    
-    });
 // calcula duração do serviço//
     function calcularDuracaoTotal(servicos){
         return servicos.reduce((total, servico) => {
@@ -202,3 +176,6 @@
  
 </body>
 </html>
+
+
+
